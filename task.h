@@ -11,7 +11,14 @@ class task{
     void init(int prio, void (*pfunc)(void), unsigned int pcycle, int pid){
       pln(trace, String(__func__));
       priority = prio;
-      void (*func)(void) = pfunc;
+      func = pfunc;
+      lastExecutionTime = 0;
+      /*
+       * make a test call 
+       */
+      pln(info, "Exec test call");
+      pfunc();
+      
       cycle = pcycle;
       id = pid;
     };
@@ -23,8 +30,10 @@ class task{
     unsigned int cycle;
     unsigned long lastExecutionTime = 0;
     bool callDue(){ 
-      pln(trace, String(__func__));
-      return millis()>(lastExecutionTime+cycle); 
+      pln(trace, String(__func__) + "ts: " + String(millis()) + "ms");
+      bool isDue = millis()>(lastExecutionTime+cycle);
+      isDue ? pln(info, "task is due"):pln(info, "task is not due");
+      return isDue; 
     }
   private:   
 };

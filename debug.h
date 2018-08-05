@@ -32,13 +32,13 @@ static void initDbg(){
 static void pln(int lvl, String msg){
   switch(lvl){
     case error:
-      Serial.println("dbg [error]: " + msg);
+      Serial.println("   dbg [error]: " + msg);
       break;
     case warning:
-      Serial.println("dbg [warn ]: " + msg);
+      Serial.println("      dbg [warn ]: " + msg);
       break;
     case info:
-      Serial.println("dbg [info ]: " + msg);
+      //Serial.println("         dbg [info ]: " + msg);
       break;
     case trace:
       Serial.println("dbg [trace]: " + msg);
@@ -47,6 +47,7 @@ static void pln(int lvl, String msg){
       Serial.println("dbg        : " + msg);
       break;
   }
+  delay(100);
 }
 
 #endif
